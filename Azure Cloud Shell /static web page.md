@@ -17,3 +17,7 @@
 8. Remove the webapp in Azure
    - az webapp stop --name <AppServiceName> --resource-group <ResourceGroupName> 
    - az webapp delete --name <AppServiceName> --resource-group <ResourceGroupName>
+
+## Configurations
+   Checking the App log
+   - az webapp log tail -n name -g RESOURCE_GROUP
