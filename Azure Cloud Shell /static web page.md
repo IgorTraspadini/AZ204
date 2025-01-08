@@ -13,7 +13,7 @@
 5. Checking the application
    - http://webappict.azurewebsites.net
 6. List the resources
-  - az resource list --query "[].{id:name}" -o tsv
+   - az resource list --query "[].{id:name}" -o tsv
 8. Remove the webapp in Azure
    - az webapp stop --name <AppServiceName> --resource-group <ResourceGroupName> 
    - az webapp delete --name <AppServiceName> --resource-group <ResourceGroupName>
