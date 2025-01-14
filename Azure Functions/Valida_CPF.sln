@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.5.001.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A23103F-16F7-4652-BE54-9A1D7A4F7556}") = "ValidaCPF_Azure_Function", "ValidaCPF_Azure_Function\ValidaCPF_Azure_Function.csproj", "{AF9C8785-EF18-424B-BC80-D81DA442631B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF9C8785-EF18-424B-BC80-D81DA442631B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9C8785-EF18-424B-BC80-D81DA442631B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9C8785-EF18-424B-BC80-D81DA442631B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9C8785-EF18-424B-BC80-D81DA442631B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {571FCF6D-6F60-458E-AD83-D4CA49BC39E6}
+	EndGlobalSection
+EndGlobal
