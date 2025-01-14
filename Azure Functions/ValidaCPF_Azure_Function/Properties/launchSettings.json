@@ -1,7 +1,7 @@
 {
   "profiles": {
-    "httpValidcpf": {
-      "commandName": "Project",
+    "ValidaCPF_Azure_Function": {
+      "commandName": "AZFunction",
       "commandLineArgs": "--port 7133",
       "launchBrowser": false
     }
