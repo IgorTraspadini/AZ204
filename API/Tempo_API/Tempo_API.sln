@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{7AE05EC0-401E-11D4-AF4F-01C04F69FFBC}") = "Tempo_API", "Tempo_API\Tempo_API.csproj", "{6BE8797C-873A-4F58-F4B9-E5059C8E5F5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BE8797C-873A-4F58-F4B9-E5059C8E5F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE8797C-873A-4F58-F4B9-E5059C8E5F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE8797C-873A-4F58-F4B9-E5059C8E5F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE8797C-873A-4F58-F4B9-E5059C8E5F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

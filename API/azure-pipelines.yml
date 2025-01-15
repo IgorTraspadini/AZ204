@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+
+pool:
+  name: MeuAgentPool
+  
+variables:
+  solution: 'C:\Users\igotra\Documents\SEB\dio-tenpo-api\Tempo_API.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+    
+- task: UseDotNet@2
+  displayName: "Install. .Net SDK"
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+
+- script: dotnet restore $(solution)
+  displayName: 'Restore Solution'
+  
+- script: dotnet build $(solution) --configuration $(buildConfiguration)
+  displayName: 'Build Solution'
+
+- script: dotnet test $(solution) --configuration $(buildConfiguration) --no-build --collect:"XPlat Code Coverage"
+  displayName: 'Test Solution'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acrapidemovtbsc'
+    repository: 'api-tempo-test'
+    command: 'buildAndPush'
+    Dockerfile: 'C:\Users\igotra\Documents\SEB\dio-tenpo-api\Tempo_API\Dockerfile'
+
