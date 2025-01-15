@@ -1,0 +1,6 @@
+@Tempo_API_HostAddress = http://localhost:5199
+
+GET {{Tempo_API_HostAddress}}/tempoforecast/
+Accept: application/json
+
+###
