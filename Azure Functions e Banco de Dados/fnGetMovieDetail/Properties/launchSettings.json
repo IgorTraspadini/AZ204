@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "fnGetMovieDetail": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 3001",
+      "launchBrowser": false
+    }
+  }
+}

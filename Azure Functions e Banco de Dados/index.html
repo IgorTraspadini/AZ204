@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Data Movie Viewer</title>
+    <style>
+        /* Estilo para o corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        /* Estilo para o container principal */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Estilo para os cards de filmes */
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        /* Estilo para as imagens de capa dos filmes */
+        .card img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        /* Estilo para os títulos dos filmes */
+        .card h2 {
+            margin-bottom: 5px;
+        }
+        /* Estilo para as informações adicionais dos filmes */
+        .card p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        /* Estilo para os botões de ação */
+        .card button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        /* Estilo para os botões de ação ao passar o mouse */
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        /* Estilo para o container de vídeo */
+        .video-container {
+            margin-top: 15px;
+            display: none;
+            width: 320px;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        /* Estilo para o vídeo */
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container principal -->
+    <div class="container" id="content">
+        <h1>Filmes</h1>
+        <p>Carregando dados da API...</p>
+    </div>
+    <script>
+        // URL da API para obter todos os filmes
+        const apiAll = "http://localhost:3000/api/allmovies";
+        // URL da API para obter detalhes de um filme
+        const apiDetail = "http://localhost:3001/api/detailmovie";
+
+        // Função para carregar os dados da API
+        async function fetchData() {
+            try {
+                // Faz uma requisição GET para a API
+                const response = await fetch(apiAll);
+                // Converte a resposta para JSON
+                const data = await response.json();
+
+                // Obtém o container principal
+                const container = document.getElementById('content');
+                // Limpa o conteúdo do container
+                container.innerHTML = ''; 
+
+                // Loop pelos filmes
+                data.forEach(movie => {
+                    // Cria um card para o filme
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    // Cria a imagem de capa do filme
+                    const thumbnail = document.createElement('img');
+                    thumbnail.src = movie.thumb;
+                    thumbnail.alt = `${movie.title} Thumbnail`;
+
+                    // Cria o título do filme
+                    const title = document.createElement('h2');
+                    title.textContent = movie.title;
+
+                    // Cria as informações adicionais do filme
+                    const year = document.createElement('p');
+                    year.textContent = `Ano: ${movie.year}`;
+
+                    // Cria o botão para exibir detalhes do filme
+                    const detailsButton = document.createElement('button');
+                    detailsButton.textContent = "Ver Detalhes";
+                    detailsButton.addEventListener('click', () => {
+                        // Chama a função para exibir o vídeo
+                        toggleVideo(card, movie.video, true);
+                    });
+
+                    // Cria o botão para ocultar o vídeo
+                    const hideButton = document.createElement('button');
+                    hideButton.textContent = "Ocult ar Vídeo";
+                    hideButton.addEventListener('click', () => {
+                        // Chama a função para ocultar o vídeo
+                        toggleVideo(card, movie.video, false);
+                    });
+
+                    // Cria o container para o vídeo
+                    const videoContainer = document.createElement('div');
+                    videoContainer.className = 'video-container';
+
+                    // Cria o player de vídeo
+                    const videoPlayer = document.createElement('video');
+                    videoPlayer.controls = true;
+                    videoContainer.appendChild(videoPlayer);
+
+                    // Adiciona os elementos ao card
+                    card.appendChild(thumbnail);
+                    card.appendChild(title);
+                    card.appendChild(year);
+                    card.appendChild(detailsButton);
+                    card.appendChild(hideButton);
+                    card.appendChild(videoContainer);
+
+                    // Adiciona o card ao container principal
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                // Exibe um erro caso a requisição falhe
+                console.error("Erro ao buscar dados:", error);
+                const container = document.getElementById('content');
+                container.innerHTML = `<p>Erro ao buscar dados. Por favor, tente novamente mais tarde.</p>`;
+            }
+        }
+
+        // Função para alternar a exibição do vídeo
+        function toggleVideo(card, videoUrl, show) {
+            const videoContainer = card.querySelector('.video-container');
+            const videoPlayer = videoContainer.querySelector('video');
+
+            if (show) {
+                // Define a URL do vídeo se não estiver definida
+                if (!videoPlayer.src) {
+                    videoPlayer.src = videoUrl; 
+                }
+                videoContainer.style.display = "block"; // Exibe o container do vídeo
+            } else {
+                videoContainer.style.display = "none"; // Oculta o container do vídeo
+                videoPlayer.pause(); // Pausa o vídeo
+            }
+        }
+
+        // Chama a função para buscar os dados ao carregar a página
+        fetchData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "fnPostDataStorage": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 3003",
+      "launchBrowser": false
+    }
+  }
+}
